@@ -1,0 +1,99 @@
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <title>Covid-19 Center - Grafico andamento tamponi</title>
+    <link rel="shortcut icon" href="icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="style-black.css?pippo=1" type="text/css">
+  </head>
+  <body>
+    <div class="row">
+      <div class="col">
+        <div class="form">
+          <h2 style="color:white">Grafico andamento tamponi</h2>
+          <input type="radio" id="Totale" name="tempo" value="Totale" checked="checked" onChange="drawChart(0)"/>
+          <label style="color:white" for="Totale">Complessivo</label>
+          <input type="radio" id="Totale" name="tempo" value="Mese" onChange="drawChart(30)">
+          <label  style="color:white" for="Mese">Ultimo mese</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div id="chart-cases-trend" style="height:1000px"></div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+function graphSetting(tittle){
+  var title=tittle;
+  var options = {
+                title: title,
+                titleTextStyle: {
+                    color: '#ffffff'
+                },
+                curveType: 'function',
+                legend: {
+                  position: 'bottom',
+                  textStyle:{
+                    color: '#FFF'
+                  },
+                },
+                backgroundColor: '#161716',
+      			    hAxis: {
+                  textStyle: {
+                    color: '#FFF'
+                  },
+                },
+                vAxis: {
+                  textStyle:{
+                    color: '#FFF'
+                  },
+                },
+                chartArea: {
+                  width: '80%',
+                },
+              };
+  return options;
+}
+function getCases(){
+  return fetch('https://raw.githubusercontent.com/pcm-dpc/COVID-19/master/dati-json/dpc-covid19-ita-andamento-nazionale.json')
+  .then(function(response){
+  return response.json();
+  });
+}
+main();
+async function main(){
+  var cases = await getCases();
+  sessionStorage.setItem('cases',  JSON.stringify(cases));
+}
+drawChart(0);
+function drawChart(period){
+  var period=period;
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChartCasesTrend);
+  async function drawChartCasesTrend(){
+    var cases=JSON.parse(sessionStorage.getItem('cases'));
+    if(period==0)
+    var periodStart=1;
+    else
+    var periodStart=cases.length-period;
+    var data=[];
+    var Header= ['Data', 'Percentuale tamponi positivi'];
+    data.push(Header);
+    for (var i = periodStart; i < cases.length; i++) {
+      var temp=[];
+      temp.push((cases[i].data).substring(0,(cases[i].data).length-9));
+    	temp.push((cases[i].nuovi_positivi/(cases[i].tamponi-cases[i-1].tamponi))*100);
+      data.push(temp);
+    }
+    var options=graphSetting("Andamento tamponi");
+    var chartdata = new google.visualization.arrayToDataTable(data);
+    var chart = new google.visualization.LineChart(document.getElementById('chart-cases-trend'));
+    chart.draw(chartdata, options);
+  }
+}
+  </script>
+</html>

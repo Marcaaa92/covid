@@ -1,0 +1,100 @@
+<html>
+  <head>
+    <title>Covid-19 Center- Andamento vaccinazioni</title>
+    <link rel="shortcut icon" href="icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css?pippo=1" type="text/css">
+  </head>
+  <body>
+    <div class="row">
+      <div class="col">
+        <div class="form">
+          <h2 style="color:white">Grafico andamento vaccinazioni</h2>
+          <input type="radio" id="Totale" name="tempo" value="Totale" checked="checked" onChange="drawChart(0)"/>
+          <label style="color:white" for="Totale">Complessivo</label>
+          <input type="radio" id="Totale" name="tempo" value="Mese" onChange="drawChart(30)">
+          <label  style="color:white" for="Mese">Ultimo Mese</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div id="vaccines-trend" style="height:1000px"></div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+function graphSetting(tittle){
+  var title=tittle;
+  var options = {
+                title: title,
+                titleTextStyle: {
+                    color: '#ffffff'
+                },
+                curveType: 'function',
+                legend: {
+                  position: 'bottom',
+                  textStyle:{
+                    color: '#FFF'
+                  },
+                },
+                backgroundColor: '#161716',
+      			    hAxis: {
+                  textStyle: {
+                    color: '#FFF'
+                  },
+                },
+                vAxis: {
+                  textStyle:{
+                    color: '#FFF'
+                  },
+                },
+                chartArea: {
+                  width: '80%',
+                },
+              };
+  return options;
+}
+function getVaccinesTrend(){
+return fetch('http://servermarca.altervista.org/covid/vaccinesTrend.php')
+.then(function(response){
+  return response.json();
+  });
+}
+main();
+async function main(){
+  var vaccinesTrend = await getVaccinesTrend();
+  sessionStorage.setItem('vaccinesTrend',  JSON.stringify(vaccinesTrend));
+}
+drawChart(0);
+function drawChart(period){
+  var period=period;
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChartCasesTrend);
+  async function drawChartCasesTrend(){
+    var vaccinesTrend=JSON.parse(sessionStorage.getItem('vaccinesTrend'));
+    if(period==0)
+    var periodStart=0;
+    else
+    var periodStart=vaccinesTrend.length-period;
+    var data=[];
+    var Header= ['Data', 'Dose 1', "Dose 2","Consegne dosi"];
+    data.push(Header);
+    for (var i = periodStart+1; i < vaccinesTrend.length; i++) {
+      var temp=[];
+      temp.push(vaccinesTrend[i].day);
+      temp.push(parseInt(vaccinesTrend[i].firstDose-vaccinesTrend[i-1].firstDose));
+      temp.push(parseInt(vaccinesTrend[i].secondDose-vaccinesTrend[i-1].secondDose));
+      temp.push(parseInt(vaccinesTrend[i].delivered-vaccinesTrend[i-1].delivered));
+      data.push(temp);
+    }
+    var options=graphSetting("Andamento vaccinazioni");
+    var chartdata = new google.visualization.arrayToDataTable(data);
+    var chart = new google.visualization.LineChart(document.getElementById('vaccines-trend'));
+    chart.draw(chartdata, options);
+  }
+}
+  </script>
+</html>

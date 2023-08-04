@@ -1,0 +1,107 @@
+body{
+  background-color: #161716;
+}
+h1{
+  color:white;
+}
+h2{
+  color:white;
+}
+h3{
+  color:white;
+}
+h4{
+  color:white;
+}
+p{
+  color:white;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  color:white;
+}
+
+th,td,tr{
+  padding: 8px;
+  text-align: center;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+a{
+	color:white;
+}
+.vaccini{
+  color:#f400a1;
+  font-size: 25pt;
+}
+.value-title{
+  color:#f5f5f5;
+  font-size: 15pt;
+}
+.value-total{
+  color:red;
+  font-size: 23pt;
+}
+.variation-total{
+  color:red;
+  font-size: 22pt;
+}
+.value-active{
+  color:yellow;
+  font-size: 23pt;
+}
+.variation-active{
+  color:yellow;
+  font-size: 22pt;
+}
+.value-healed{
+  color:lime;
+  font-size: 23pt;
+}
+.variation-healed{
+  color:lime;
+  font-size: 22pt;
+}
+.value-death{
+  color:grey;
+  font-size: 23pt;
+}
+.variation-death{
+  color:grey;
+  font-size: 22pt;
+}
+.value-tampons{
+  color:orange;
+  font-size: 23pt;
+}
+.variation-tampons{
+  color:orange;
+  font-size: 22pt;
+}
+.value-vaccine{
+  color:#f400a1;
+  font-size: 23pt;
+}
+.value-region{
+  color:red;
+  font-size: 14pt;
+}
+.progress{
+color:black;
+font-size: 12pt;
+height:100%
+}
+.progress-bar{
+background:#f400a1;
+}
+.chart{
+  height: 500;
+}
+.form{
+  text-align:center;
+}
+.main-title{
+font-weight: bold;
+text-align:center;
+}

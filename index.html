@@ -1,0 +1,269 @@
+<html lang="it">
+  <head>
+    <meta charset="UTF-8">
+    <title>Covid-19 Center</title>
+    <link rel="shortcut icon" href="icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="style-black.css?pippo=1" type="text/css">
+  </head>
+  <body>
+    <h1 class="main-title">COVID-19 datasheet</h1>
+	<ul class="nav nav-pills">
+	  <li role="presentation" style="background-color:#3e69de"><a href="#cases">PARONAMICA CASI</a></li>
+	  <li role="presentation" style="background-color:#3e69de"><a href="#vaccines">PARONAMICA VACCINAZIONI</a></li>
+	  <li role="presentation" style="background-color:#3e69de"><a href="#graph">AREA GRAFICI</a></li>
+	</ul>
+    <div class="row" id="cases">
+      <div class="col-md-4">
+        <h1>Paronamica nazionale:</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">CASI TOTALI</h1>
+            <h1 class="value-total" id="total-cases">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">VARIAZIONE</h1>
+            <h1 class="variation-total" id="total-cases-variation">-</h1>
+          </div>
+        </div>
+        <hr align=”left” size=”1″ width=100% color=white noshade>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">CASI ATTIVI</h1>
+            <h1 class="value-active" id="total-active">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">VARIAZIONE</h1>
+            <h1 class="variation-active" id="total-active-variation">-</h1>
+          </div>
+        </div>
+        <hr align=”left” size=”1″ width=100% color=white noshade>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">GUARITI</h1>
+            <h1 class="value-healed" id="total-healed">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">VARIAZIONE</h1>
+            <h1 class="variation-healed" id="total-healed-variation">-</h1>
+          </div>
+        </div>
+        <hr align=”left” size=”1″ width=100% color=white noshade>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">DECESSI</h1>
+            <h1 class="value-death" id="total-death">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">VARIAZIONE</h1>
+            <h1 class="variation-death" id="total-death-variation">-</h1>
+          </div>
+        </div>
+        <hr align=”left” size=”1″ width=100% color=white noshade>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">TAMPONI EFFETTUATI</h1>
+            <h1 class="value-tampons" id="total-tampons">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">VARIAZIONE</h1>
+            <h1 class="variation-tampons" id="total-tampons-variation">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">PERCENTUALE POSITIVI SU TAMPONI EFFETTUATI</h1>
+            <h1 class="variation-tampons" id="tampons-variation-percent">-</h1>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <h1>Lista regioni:</h1>
+        <table class="table-regions">
+          <tr><th>Regione:</th><th>Casi totali:</th><th>Persone vaccinate:</th><th>Percentuale dosi usate</th></tr>
+          <tr onClick="onClickRegionData(0)"><td>Abruzzo</td><td id="c0"></td><td id="v0"></td><td id="vp0"></td></tr>
+          <tr onClick="onClickRegionData(1)"><td>Basilicata</td><td id="c1"></td><td id="v1"></td><td id="vp1"></td></tr>
+          <tr onClick="onClickRegionData(2)"><td>Calabria</td><td id="c2"></td><td id="v2"></td><td id="vp2"></td></tr>
+          <tr onClick="onClickRegionData(3)"><td>Campania</td><td id="c3"></td><td id="v3"></td><td id="vp3"></td></tr>
+          <tr onClick="onClickRegionData(4)"><td>Emilia Romagna</td><td id="c4"></td><td id="v4"></td><td id="vp4"></td></tr>
+          <tr onClick="onClickRegionData(5)"><td>Friuli Venezia Giulia</td><td id="c5"></td><td id="v5"></td><td id="vp5"></td></tr>
+          <tr onClick="onClickRegionData(6)"><td>Lazio</td><td id="c6"></td><td id="v6"></td><td id="vp6"></td></tr>
+          <tr onClick="onClickRegionData(7)"><td>Liguria</td><td id="c7"></td><td id="v7"></td><td id="vp7"></td></tr>
+          <tr onClick="onClickRegionData(8)"><td>Lombardia</td><td id="c8"></td><td id="v8"></td><td id="vp8"></td></tr>
+          <tr onClick="onClickRegionData(9)"><td>Marche</td><td id="c9"></td><td id="v9"></td><td id="vp9"></td></tr>
+          <tr onClick="onClickRegionData(10)"><td>Molise</td><td id="c10"></td><td id="v10"></td><td id="vp10"></td></tr>
+          <tr onClick="onClickRegionData(11)"><td>Bolzano</td><td id="c11"></td><td id="v11"></td><td id="vp11"></td></tr>
+          <tr onClick="onClickRegionData(12)"><td>Trento</td><td id="c12"></td><td id="v12"></td><td id="vp12"></td></tr>
+          <tr onClick="onClickRegionData(13)"><td>Piemonte</td><td id="c13"></td><td id="v13"></td><td id="vp13"></td></tr>
+          <tr onClick="onClickRegionData(14)"><td>Puglia</td><td id="c14"></td><td id="v14"></td><td id="vp14"></td></tr>
+          <tr onClick="onClickRegionData(15)"><td>Sardegna</td><td id="c15"></td><td id="v15"></td><td id="vp15"></td></tr>
+          <tr onClick="onClickRegionData(16)"><td>Sicilia</td><td id="c16"></td><td id="v16"></td><td id="vp16"></td></tr>
+          <tr onClick="onClickRegionData(17)"><td>Toscana</td><td id="c17"></td><td id="v17"></td><td id="vp17"></td></tr>
+          <tr onClick="onClickRegionData(18)"><td>Umbria</td><td id="c18"></td><td id="v18"></td><td id="vp18"></td></tr>
+          <tr onClick="onClickRegionData(19)"><td>Valle d'aosta</td><td id="c19"></td><td id="v19"></td><td id="vp19"></td></tr>
+          <tr onClick="onClickRegionData(20)"><td>Veneto</td><td id="c20"></td><td id="v20"></td><td id="vp20"></td></tr>
+        </table>
+      </div>
+      <div class="col-md-4">
+        <h1 style="color:white">Informazione Regione:</h1>
+        <h1 class="value-title">NOME REGIONE:</h1>
+        <h1 class="value-region" id="region-name"></h1>
+        <h1 class="value-title">RICOVERATI:</h1>
+        <h1 class="value-region" id="region-hospitalized"></h1>
+        <h1 class="value-title">TERAPIA INTENSIVA:</h1>
+        <h1 class="value-region" id="region-intensive-care"></h1>
+        <h1 class="value-title">ISOLAMENTO DOMICILIARE:</h1>
+        <h1 class="value-region" id="region-quarantine"></h1>
+        <h1 class="value-title">POSITIVI:</h1>
+        <h1 class="value-region" id="region-positive"></h1>
+        <h1 class="value-title">NUOVI POSITIVI:</h1>
+        <h1 class="value-region" id="region-new-positive"></h1>
+        <h1 class="value-title">GUARITI:</h1>
+        <h1 class="value-region" id="region-healed"></h1>
+        <h1 class="value-title">DECESSI:</h1>
+        <h1 class="value-region" id="region-death"></h1>
+        <h1 class="value-title">TOTALI CASI:</h1>
+        <h1 class="value-region" id="region-total-cases"></h1>
+        <h1 class="value-title">TOTALE TAMPONI:</h1>
+        <h1 class="value-region" id="region-total-tampons"></h1>
+        <h1 class="value-title">TOTALE VACCINI CONSEGNATI:</h1>
+        <h1 class="value-region" id="region-total-doses-delivered"></h1>
+        <h1 class="value-title">PERSONE VACCINATE:</h1>
+        <h1 class="value-region" id="region-total-doses-administered"></h1>
+        <h1 class="value-title">DOSI UTILIZZATE:</h1>
+        <h1 class="value-region" id="region-total-doses-used"></h1>
+      </div>
+    </div>
+    <div class="row" id="vaccines">
+      <div class="col-md-4">
+        <hr align=”left” size=”1″ width=100% color=white noshade>
+        <h1>Stato vaccinazioni:</h1>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">DOSI SOMMINISTRATE</h1>
+            <h1 class="value-vaccine" id="total-doses-administered">-</h1>
+			<h1 class="value-title">VARIAZIONE ALLE 17:30</h1>
+            <h1 class="value-vaccine" id="total-doses-administered-variation">-</h1>
+			<h1 class="value-title">VARIAZIONE DALLE 17:30</h1>
+            <h1 class="value-vaccine" id="total-doses-administered-variation-last">-</h1>
+          </div>
+          <div class="col-md-6">
+            <h1 class="value-title">DOSI CONSEGNATE</h1>
+            <h1 class="value-vaccine" id="total-doses-delivered">-</h1>
+			<h1 class="value-title">VARIAZIONE ALLE 17:30</h1>
+            <h1 class="value-vaccine" id="total-doses-delivered-variation">-</h1>
+			<h1 class="value-title">VARIAZIONE DALLE 17.30</h1>
+            <h1 class="value-vaccine" id="total-doses-delivered-variation-last">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">PERCENTUALE DOSI SOMMINISTRATE</h1>
+            <h1 class="value-vaccine" id="total-doses-administered-percent">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="value-title">PRIMA DOSE</h1>
+            <h1 class="value-vaccine" id="first-doses-administered">-</h1>
+			<h1 class="value-title">VARIAZIONE ALLE 17:30</h1>
+            <h1 class="value-vaccine" id="first-doses-administered-variation">-</h1>
+			<h1 class="value-title">VARIAZIONE DALLE 17:30</h1>
+            <h1 class="value-vaccine" id="first-doses-administered-variation-last">-</h1>
+			<h1 class="value-title">IMMUNITA DI GREGGE PARZIALE</h1>
+            <h1 class="value-vaccine" id="first-doses-administered-percent">-</h1>
+          </div>
+          <div class="col-md-6">
+            <h1 class="value-title">SECONDA DOSE</h1>
+            <h1 class="value-vaccine" id="second-doses-administered">-</h1>
+			<h1 class="value-title">VARIAZIONE ALLE 17:30</h1>
+            <h1 class="value-vaccine" id="second-doses-administered-variation">-</h1>
+			<h1 class="value-title">VARIAZIONE DALLE 17:30</h1>
+            <h1 class="value-vaccine" id="second-doses-administered-variation-last">-</h1>
+			<h1 class="value-title">IMMUNITA DI GREGGE TOTALE</h1>
+            <h1 class="value-vaccine" id="second-doses-administered-percent">-</h1>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+			<h1 class="value-title">FEMMINE</h1>
+            <h1 class="value-vaccine" id="female-doses-administered">-</h1>
+			<h1 class="value-title">OPERATORI SANITARI E SOCIOSANITARI</h1>
+            <h1 class="value-vaccine" id="operator-doses-administered">-</h1>
+            <h1 class="value-title">OSPITI RSA</h1>
+            <h1 class="value-vaccine" id="guest-doses-administered">-</h1>
+            <h1 class="value-title">PERSONALE SCOLASTICO</h1>
+            <h1 class="value-vaccine" id="school-member-doses-administered">-</h1>
+          </div>
+		  <div class="col-md-6">
+            <h1 class="value-title">MASCHI</h1>
+            <h1 class="value-vaccine" id="male-doses-administered">-</h1>
+            <h1 class="value-title">OPERATORI NON SANITARI E SOCIOSANITARI</h1>
+            <h1 class="value-vaccine" id="non-operator-doses-administered">-</h1>
+            <h1 class="value-title">FORZE ARMATE</h1>
+            <h1 class="value-vaccine" id="military-doses-administered">-</h1>
+          </div>
+        </div>
+        <hr align=”left” size=”1″ width=100% color=white noshade>
+      </div>
+      <div class="col-md-8">
+        <hr align=”left” size=”1″ width=100% color=white noshade>
+          <h1>Vaccinazioni per età:</h1>
+          <div class="chart" id="vaccines-for-age"></div>
+		  <h1>Dosi consegnate per azienda:</h1>
+          <div class="chart" id="vaccines-for-company"></div>
+      </div>
+    </div>
+    <div class="row" id="graph">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-6">
+            <a href="chart-cases-trend.html"><div class="chart" id="chart-cases-trend"></div></a>
+          </div>
+          <div class="col-md-6">
+            <a href="chart-variation-cases-trend.html"><div class="chart" id="chart-variation-cases-trend"></div></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <a href="chart-tampons-trend.html"><div class="chart" id="chart-tampons-trend"></div></a>
+          </div>
+          <div class="col-md-6">
+            <a href="chart-hospital-trend.html"><div class="chart" id="chart-hospital-trend"></div></a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <a href="vaccines-trend.html"><div class="chart" id="vaccines-trend"></div></a>
+          </div>
+		   <div class="col-md-6">
+            <a href="vaccines-trend-dayly.html"><div class="chart" id="vaccines-trend-dayly"></div></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <h2>Data e ora aggiornamento dati sul contagio Covid-19:</h2>
+        <h4 id="last-update-cases"></h4>
+        <h2>Data e ora aggiornamento dati sulle vaccinazioni:</h2>
+        <h4 id="last-update-vaccines"></h4>
+        <h2>Crediti and dataset:</h2>
+        <h4>Dati CSV/JSON bollettino: <a href="https://github.com/pcm-dpc/COVID-19">https://github.com/pcm-dpc/COVID-19</a></h4>
+        <h4>Dati CSV/JSON vaccinazioni: <a href="https://github.com/italia/covid19-opendata-vaccini/tree/master/dati">https://github.com/italia/covid19-opendata-vaccini/tree/master/dati</a></h4>
+        <h4>Sito sviluppato da: <a href="https://www.instagram.com/marcandalli.simone/">Marcandalli Simone</a></h4>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript"  src="load_data.js"></script>
+</html>
