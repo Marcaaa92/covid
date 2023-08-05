@@ -3,5 +3,5 @@ This is a project developed by me in late 2020 during the coronavirus pandemic. 
 
  - Site developed in JavaScript and HTML with a part in PHP
 
-[Mirror 1 of website](https://servermarca.duckdns.org/covid/)
-[Mirror 2 of website](https://servermarca.altervista.org/covid/)
+- [Mirror 1 of website](https://servermarca.duckdns.org/covid/)
+- [Mirror 2 of website](https://servermarca.altervista.org/covid/)
